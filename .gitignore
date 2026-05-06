@@ -1,0 +1,43 @@
+# Credenciais — NUNCA versionar
+.env
+
+# Saídas geradas pela automação
+chamados_criados_*.xlsx
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# Playwright
+.playwright/
+playwright-report/
+test-results/
+
+# Ambiente virtual
+.venv/
+venv/
+env/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Cobertura de testes
+.coverage
+htmlcov/
+.pytest_cache/

@@ -1,0 +1,12 @@
+# Runtime
+playwright==1.51.0
+customtkinter==5.2.2
+pandas==3.0.1
+openpyxl==3.1.5
+python-dotenv==1.1.0
+
+# Dev / CI — não são instalados em produção (use: pip install -r requirements-dev.txt)
+# Separar se o projeto crescer. Por ora, mantemos tudo aqui para simplicidade.
+ruff==0.9.0
+pytest==8.3.5
+pytest-asyncio==0.25.3
