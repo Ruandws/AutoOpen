@@ -358,6 +358,7 @@ params = {
     "localizacao":   str,   # opcional — sobrescreve o do raiz se preenchido
     "categoria":     str,   # opcional — sobrescreve o do raiz se preenchido
     "planilha_path": str,   # obrigatório — caminho do arquivo .xlsx/.csv
+    "saida_dir":     str,   # opcional — pasta onde salvar a planilha de saída (padrão: mesma de entrada)
 }
 ```
 
@@ -438,14 +439,14 @@ params = {
 
 > Não avançar para a próxima fase sem validar os critérios de saída da atual.
 
-### Fase 0 — Fundação ✅ (concluída)
+### Fase 0 — Fundação
 
-- [x] Estrutura de arquivos flat
+- [ ] Estrutura de arquivos flat
 - [x] Interface gráfica CustomTkinter (dark mode, campos, log, progresso)
-- [x] Automação Playwright (login, leitura de raiz, criação de filhos)
-- [x] Leitura `.xlsx`/`.csv`
-- [x] Geração planilha de resultados
-- [x] Refatoração e eliminação de duplicação
+- [ ] Leitura `.xlsx`/`.csv`
+- [ ] Automação Playwright (login, leitura de raiz, criação de filhos)
+- [ ] Geração planilha de resultados
+- [ ] Refatoração e eliminação de duplicação
 
 **Critério de saída:** Fluxo completo manual funciona end-to-end.
 
@@ -463,7 +464,6 @@ params = {
 ### Fase 2 — Robustez
 
 - [ ] Retry automático (1–2 tentativas antes de marcar `"ERRO"`)
-- [ ] Screenshot automático em erro (`page.screenshot()` → pasta `logs/`)
 - [ ] Log salvo em arquivo `.log` além da interface
 - [ ] Botão de cancelamento durante execução
 
