@@ -443,7 +443,7 @@ params = {
 
 - [ ] Estrutura de arquivos flat
 - [x] Interface gráfica CustomTkinter (dark mode, campos, log, progresso)
-- [ ] Leitura `.xlsx`/`.csv`
+- [x] Leitura `.xlsx`/`.csv`
 - [ ] Automação Playwright (login, leitura de raiz, criação de filhos)
 - [ ] Geração planilha de resultados
 - [ ] Refatoração e eliminação de duplicação

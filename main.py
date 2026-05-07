@@ -536,6 +536,7 @@ class AutoOpenApp(ctk.CTk):
 
         threading.Thread(
             target=self._fake_execution,
+            args=(params,),
             daemon=True,
         ).start()
 
@@ -543,35 +544,34 @@ class AutoOpenApp(ctk.CTk):
     # MOCK EXECUTION
     # -----------------------------------------------------------------------
 
-    def _fake_execution(self) -> None:
+    def _fake_execution(self, params: dict) -> None:
         import time
 
-        steps = [
-            "Lendo planilha...",
-            "Validando parâmetros...",
-            "Inicializando Playwright...",
-            "Preparando automação...",
-            "Aguardando implementação...",
-        ]
+        from automation import _ler_planilha
 
-        total = len(steps)
+        self.after(0, lambda: self._append_log("⚙️ Lendo planilha..."))
+        self.after(0, lambda: self.progress_label.configure(text="Etapa 1/2 - Leitura da planilha"))
+        self.after(0, lambda: self.progressbar.set(0.3))
 
-        for index, step in enumerate(steps, start=1):
-            time.sleep(0.7)
-
-            progress = index / total
-
-            self.after(0, lambda s=step: self._append_log(f"⚙️ {s}"))
+        try:
+            logins = _ler_planilha(params["planilha_path"])
             self.after(
                 0,
-                lambda p=progress: self.progressbar.set(p),
-            )
-            self.after(
-                0,
-                lambda i=index, t=total: self.progress_label.configure(
-                    text=f"Etapa {i}/{t}",
+                lambda count=len(logins): self._append_log(
+                    f"✅ {count} logins carregados com sucesso."
                 ),
             )
+        except Exception as e:
+            self.after(0, lambda err=e: self._append_log(f"❌ Erro na planilha: {err}"))
+            self.after(0, lambda: self.progress_label.configure(text="Execução abortada"))
+            self.after(0, lambda: self.btn_iniciar.configure(state="normal"))
+            return
+
+        time.sleep(1)
+        self.after(0, lambda: self._append_log("⚙️ Aguardando implementação Playwright..."))
+        self.after(0, lambda: self.progress_label.configure(text="Etapa 2/2 - Aguardando..."))
+        self.after(0, lambda: self.progressbar.set(0.8))
+        time.sleep(1)
 
         self.after(0, self._finish_mock_execution)
 
