@@ -1,43 +1,35 @@
-# Credenciais — NUNCA versionar
+# ── Credenciais (NUNCA versionadas) ──────────────────────────────
 .env
 
-# Saídas geradas pela automação
-chamados_criados_*.xlsx
-
-# Python
+# ── Python ───────────────────────────────────────────────────────
 __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
 .Python
-*.egg-info/
-dist/
-build/
 
-# Playwright
+# ── Playwright ───────────────────────────────────────────────────
 .playwright/
-playwright-report/
-test-results/
 
-# Ambiente virtual
+# ── Saídas geradas pelo AutoOpen ─────────────────────────────────
+chamados_criados_*.xlsx
+*.log
+
+# ── Ambientes virtuais ────────────────────────────────────────────
 .venv/
 venv/
 env/
 
-# IDEs
+# ── IDEs ─────────────────────────────────────────────────────────
 .vscode/
 .idea/
 *.swp
 *.swo
 
-# macOS
+# ── macOS ────────────────────────────────────────────────────────
 .DS_Store
 
-# Logs
-*.log
-logs/
-
-# Cobertura de testes
-.coverage
-htmlcov/
-.pytest_cache/
+# ── Distribuição / build ─────────────────────────────────────────
+dist/
+build/
+*.egg-info/

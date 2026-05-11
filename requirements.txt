@@ -1,12 +1,22 @@
-# Runtime
+# AutoOpen — dependências fixadas
+# Atualizar versões apenas com aprovação (ver spec.md seção 2 — Boundaries)
+
+# Automação
 playwright==1.51.0
+
+# Interface gráfica
 customtkinter==5.2.2
+
+# Dados
 pandas==3.0.1
 openpyxl==3.1.5
+
+# Configuração
 python-dotenv==1.1.0
 
-# Dev / CI — não são instalados em produção (use: pip install -r requirements-dev.txt)
-# Separar se o projeto crescer. Por ora, mantemos tudo aqui para simplicidade.
-ruff==0.9.0
+# Lint / Format (dev)
+ruff==0.9.10
+
+# Testes (dev)
 pytest==8.3.5
 pytest-asyncio==0.25.3

@@ -555,11 +555,10 @@ class AutoOpenApp(ctk.CTk):
 
         try:
             logins = _ler_planilha(params["planilha_path"])
+            count = len(logins)
             self.after(
                 0,
-                lambda count=len(logins): self._append_log(
-                    f"✅ {count} logins carregados com sucesso."
-                ),
+                lambda: self._append_log(f"✅ {count} logins carregados com sucesso."),
             )
         except Exception as e:
             self.after(0, lambda err=e: self._append_log(f"❌ Erro na planilha: {err}"))

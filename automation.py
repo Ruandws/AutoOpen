@@ -3,6 +3,7 @@
 from pathlib import Path
 
 import pandas as pd
+from pandas.errors import EmptyDataError
 
 # ---------------------------------------------------------------------------
 # CONSTANTES
@@ -57,6 +58,8 @@ def _ler_planilha(path: str) -> list[str]:
             df = pd.read_csv(arquivo)
         except UnicodeDecodeError:
             df = pd.read_csv(arquivo, encoding="latin1")
+        except EmptyDataError as err:
+            raise ValueError("A planilha está vazia.") from err
 
     else:
         raise ValueError("Formato inválido. Utilize apenas .xlsx ou .csv")
@@ -86,3 +89,24 @@ def _ler_planilha(path: str) -> list[str]:
         raise ValueError("Nenhum login válido encontrado na planilha.")
 
     return logins
+
+
+def _salvar_resultados(resultados: list[dict], path: str) -> None:
+    """Salva resultados da automação em planilha (CSV ou XLSX) com 2 colunas: Login e Chamado."""
+    if not resultados:
+        raise ValueError("Lista de resultados vazia.")
+
+    arquivo = Path(path)
+    arquivo.parent.mkdir(parents=True, exist_ok=True)
+
+    # Garante exatamente 2 colunas: Login e Chamado
+    df = pd.DataFrame(resultados)[["login", "chamado"]]
+
+    extensao = arquivo.suffix.lower()
+
+    if extensao == ".xlsx":
+        df.to_excel(arquivo, index=False)
+    elif extensao == ".csv":
+        df.to_csv(arquivo, index=False)
+    else:
+        raise ValueError("Formato inválido. Utilize apenas .xlsx ou .csv")
